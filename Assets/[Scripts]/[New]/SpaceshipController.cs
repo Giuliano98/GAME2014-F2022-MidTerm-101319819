@@ -27,4 +27,18 @@ public class SpaceshipController : MonoBehaviour
         // Update the spaceship's position
         transform.position = new Vector3(transform.position.x, newYPos, transform.position.z);
     }
+
+    // Method to move the ship up
+    public void MoveUp()
+    {
+        float newYPos = Mathf.Clamp(transform.position.y + movementSpeed * Time.deltaTime, minY, maxY);
+        transform.position = new Vector3(transform.position.x, newYPos, transform.position.z);
+    }
+
+    // Method to move the ship down
+    public void MoveDown()
+    {
+        float newYPos = Mathf.Clamp(transform.position.y - movementSpeed * Time.deltaTime, minY, maxY);
+        transform.position = new Vector3(transform.position.x, newYPos, transform.position.z);
+    }
 }
