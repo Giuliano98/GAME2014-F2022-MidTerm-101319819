@@ -8,11 +8,13 @@ public class Bullet : MonoBehaviour
 
     void Update()
     {
-        // Move the bullet from left to right
         transform.Translate(Vector3.right * speed * Time.deltaTime);
 
-        // Destroy the bullet if it goes off the screen
-        if (transform.position.x > Camera.main.orthographicSize * 2 * Camera.main.aspect)
+        // Get the width of the screen
+        float screenWidth = Camera.main.orthographicSize * 2 * Camera.main.aspect;
+
+        // Destroy the bullet if it goes off the screen either left or right
+        if (Mathf.Abs(transform.position.x) > screenWidth / 2f)
         {
             Destroy(gameObject);
         }

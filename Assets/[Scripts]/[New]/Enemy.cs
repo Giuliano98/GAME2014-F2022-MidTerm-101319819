@@ -8,6 +8,8 @@ public class Enemy : MonoBehaviour
     public float verticalSpeed = 2f; // Speed of vertical movement
     public GameObject bulletPrefab; // Reference to the bullet prefab
     public Transform bulletSpawnPoint; // The position where bullets will be spawned
+    public float shootInterval = 2f; // Time interval between enemy shots
+    private float timeSinceLastShot;
 
     private bool movingUp = true;
 
@@ -54,16 +56,19 @@ public class Enemy : MonoBehaviour
 
     void Shoot()
     {
-        // // Shoot bullets at regular intervals
-        // timeSinceLastShot += Time.deltaTime;
-        // if (timeSinceLastShot >= shootInterval)
-        // {
-        //     // Instantiate a new bullet at the bullet spawn point
-        //     GameObject bullet = Instantiate(bulletPrefab, bulletSpawnPoint.position, Quaternion.identity);
-        //     // Set the bullet's initial velocity to move towards the left
-        //     bullet.GetComponent<Rigidbody2D>().velocity = new Vector2(-moveSpeed * 2, 0f);
-        //     // Reset the time since the last shot
-        //     timeSinceLastShot = 0f;
-        // }
+        // Shooting logic goes here
+        timeSinceLastShot += Time.deltaTime;
+        if (timeSinceLastShot >= shootInterval)
+        {
+            // Instantiate a new bullet at the bullet spawn point
+            GameObject bullet = Instantiate(bulletPrefab, bulletSpawnPoint.position, Quaternion.identity);
+
+            // Set the bullet's initial velocity to move towards the left (assuming bullets move from right to left)
+            // If the bullets should move from left to right, use a positive x-velocity.
+            bullet.transform.Translate(Vector3.left * moveSpeed * Time.deltaTime);
+
+            // Reset the time since the last shot
+            timeSinceLastShot = 0f;
+        }
     }
 }
