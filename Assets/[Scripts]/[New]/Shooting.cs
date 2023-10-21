@@ -17,6 +17,7 @@ public class Shooting : MonoBehaviour
 
     void Update()
     {
+        //! using old and new input when necessary
         // Check for input to shoot bullets
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -26,10 +27,6 @@ public class Shooting : MonoBehaviour
 
     public void ShootBullet()
     {
-        // Instantiate a new bullet at the spawn point
         GameObject bullet = Instantiate(bulletPrefab, spawnPoint.position, Quaternion.identity);
-        //GameObject bullet = Instantiate(bulletPrefab, spawnPoint.position, bulletPrefab.transform.rotation);
-        // Set the bullet's initial velocity (if necessary)
-        // bullet.GetComponent<Rigidbody2D>().velocity = new Vector2(bulletSpeed, 0f);
     }
 }

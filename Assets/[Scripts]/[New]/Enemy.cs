@@ -22,6 +22,7 @@ public class Enemy : MonoBehaviour
 
     void Start()
     {
+        //! setting up direction, camera bounds, etc
         // Set the initial position of the enemy to the right side of the screen
         float screenHeight = Camera.main.orthographicSize * 2;
         float screenWidth = screenHeight * Camera.main.aspect;
@@ -53,10 +54,12 @@ public class Enemy : MonoBehaviour
         float screenHeight = Camera.main.orthographicSize;
         if (Mathf.Abs(transform.position.y) > screenHeight)
         {
+            //! Reverse
             // Reverse the vertical movement direction when hitting the screen borders
             movingUp = !movingUp;
         }
 
+        //! Destroy
         // Destroy the enemy if it moves beyond the left border
         if (transform.position.x < -Camera.main.orthographicSize * Camera.main.aspect)
         {
@@ -66,6 +69,7 @@ public class Enemy : MonoBehaviour
 
     void Shoot()
     {
+        //! shoot logic for the enemy
         // Shooting logic goes here
         timeSinceLastShot += Time.deltaTime;
         if (timeSinceLastShot >= shootInterval)

@@ -11,6 +11,7 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
+    //! bullet for my player
     public float speed = 10f; // Speed at which the bullet moves from left to right
 
     void Update()

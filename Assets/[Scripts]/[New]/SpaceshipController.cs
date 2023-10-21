@@ -12,10 +12,9 @@ using UnityEngine.InputSystem;
 
 public class SpaceshipController : MonoBehaviour
 {
+    //! New input sytem
     public InputAction playerMovement;
-
     public float movementSpeed = 5f; // Speed at which the spaceship moves
-
     float minY, maxY; // Minimum and maximum Y positions for the spaceship
 
     private void OnEnable()
@@ -29,6 +28,7 @@ public class SpaceshipController : MonoBehaviour
 
     void Start()
     {
+        //! boundaries
         // Calculate the boundaries based on the screen size and aspect ratio
         float halfShipHeight = transform.localScale.y / 2f;
         minY = Camera.main.ViewportToWorldPoint(new Vector3(0, 0, 0)).y + halfShipHeight;
@@ -37,28 +37,13 @@ public class SpaceshipController : MonoBehaviour
 
     void Update()
     {
+        //! using the New input sytem
         // Get the vertical input for both keyboard and touch
-        //float verticalInput = Input.GetAxis("Vertical");
-        //var test = playerMovement.ReadValue<float>();
         float verticalInput = playerMovement.ReadValue<float>();
         // Calculate the new Y position of the spaceship
         float newYPos = Mathf.Clamp(transform.position.y + verticalInput * movementSpeed * Time.deltaTime, minY, maxY);
 
         // Update the spaceship's position
-        transform.position = new Vector3(transform.position.x, newYPos, transform.position.z);
-    }
-
-    // Method to move the ship up
-    public void MoveUp()
-    {
-        float newYPos = Mathf.Clamp(transform.position.y + movementSpeed * Time.deltaTime, minY, maxY);
-        transform.position = new Vector3(transform.position.x, newYPos, transform.position.z);
-    }
-
-    // Method to move the ship down
-    public void MoveDown()
-    {
-        float newYPos = Mathf.Clamp(transform.position.y - movementSpeed * Time.deltaTime, minY, maxY);
         transform.position = new Vector3(transform.position.x, newYPos, transform.position.z);
     }
 }

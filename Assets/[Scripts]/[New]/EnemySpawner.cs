@@ -14,15 +14,13 @@ public class EnemySpawner : MonoBehaviour
     public GameObject enemyPrefab; // Reference to the enemy prefab you want to spawn
     public float spawnInterval = 3f; // Time interval between enemy spawns
     public Transform spawnPoint; // The position where the enemy will be spawned
-    public float intervalVariation = 0.2f;
-
     private float timeSinceLastSpawn = 0f;
 
     void Start()
     {
+        //! Start spawning enemies
         SpawnEnemy();
     }
-
 
     void Update()
     {
