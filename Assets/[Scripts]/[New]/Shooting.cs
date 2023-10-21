@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class Shooting : MonoBehaviour
 {
     public GameObject bulletPrefab; // Reference to the bullet prefab
@@ -16,7 +17,7 @@ public class Shooting : MonoBehaviour
         }
     }
 
-    void ShootBullet()
+    public void ShootBullet()
     {
         // Instantiate a new bullet at the spawn point
         GameObject bullet = Instantiate(bulletPrefab, spawnPoint.position, Quaternion.identity);

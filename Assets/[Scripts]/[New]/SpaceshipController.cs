@@ -1,12 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class SpaceshipController : MonoBehaviour
 {
+    public InputAction playerMovement;
+
     public float movementSpeed = 5f; // Speed at which the spaceship moves
 
     float minY, maxY; // Minimum and maximum Y positions for the spaceship
+
+    private void OnEnable()
+    {
+        playerMovement.Enable();
+    }
+    private void OnDisable()
+    {
+        playerMovement.Disable();
+    }
 
     void Start()
     {
@@ -19,8 +31,9 @@ public class SpaceshipController : MonoBehaviour
     void Update()
     {
         // Get the vertical input for both keyboard and touch
-        float verticalInput = Input.GetAxis("Vertical");
-
+        //float verticalInput = Input.GetAxis("Vertical");
+        //var test = playerMovement.ReadValue<float>();
+        float verticalInput = playerMovement.ReadValue<float>();
         // Calculate the new Y position of the spaceship
         float newYPos = Mathf.Clamp(transform.position.y + verticalInput * movementSpeed * Time.deltaTime, minY, maxY);
 
