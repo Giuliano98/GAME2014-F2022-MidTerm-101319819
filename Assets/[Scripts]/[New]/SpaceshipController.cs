@@ -1,3 +1,10 @@
+/*
+ * Author: Giuliano Venturo Gonzales
+ * Student ID: 101319819
+ * Date Last Modified: 2023/10/20
+ * Program Description: controller for spaceship
+ */
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

@@ -1,3 +1,10 @@
+/*
+ * Author: Giuliano Venturo Gonzales
+ * Student ID: 101319819
+ * Date Last Modified: 2023/10/20
+ * Program Description: for enemy prefab
+ */
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -19,6 +26,9 @@ public class Enemy : MonoBehaviour
         float screenHeight = Camera.main.orthographicSize * 2;
         float screenWidth = screenHeight * Camera.main.aspect;
         transform.position = new Vector3(screenWidth / 2f, Random.Range(-screenHeight / 2f, screenHeight / 2f), 0f);
+
+        // Randomly choose if the enemy should move up or down
+        movingUp = Random.Range(0, 2) == 0; // If 0, move down; if 1, move up
 
         // Set initial movement to the left
         moveSpeed = -Mathf.Abs(moveSpeed);
@@ -62,11 +72,7 @@ public class Enemy : MonoBehaviour
         {
             // Instantiate a new bullet at the bullet spawn point
             GameObject bullet = Instantiate(bulletPrefab, bulletSpawnPoint.position, Quaternion.identity);
-
-            // Set the bullet's initial velocity to move towards the left (assuming bullets move from right to left)
-            // If the bullets should move from left to right, use a positive x-velocity.
             bullet.transform.Translate(Vector3.left * moveSpeed * Time.deltaTime);
-
             // Reset the time since the last shot
             timeSinceLastShot = 0f;
         }
